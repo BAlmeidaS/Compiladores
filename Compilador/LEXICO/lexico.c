@@ -24,14 +24,14 @@ void endToken() {
 		case T_RESERV_IDENTIF:
 			//entende Se é uma palavra reservada ou se é um identificador
 			if (token->type == T_RESERV_IDENTIF){
-				int index_of_reserved = search_reserved_words_table(token->lexeme);
+				int index_of_reserved = SearchReserverdWords(token->lexeme);
 
 				if (index_of_reserved != INDEX_NOT_FOUND) {
 					token->type = T_RESERVED_WORD;
 					token->value = index_of_reserved;
 				} else {
 					token->type = T_IDENTIF;
-					token->value = add_if_new_identifiers_table(token->lexeme);
+					token->value = CheckIdentifier(token->lexeme);
 				}			
 			}
 			break;
@@ -41,7 +41,7 @@ void endToken() {
 			break;
 
 		case T_SPECIAL_CHARACTER:
-			token->value = search_special_characters_table(token->lexeme);
+			token->value = SearchSpecialCharacters(token->lexeme);
 			break;
 
 		case T_STRING:

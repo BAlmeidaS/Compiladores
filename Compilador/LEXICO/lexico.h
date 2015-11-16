@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include "token.h"
 #include "../ADT/linked_list.h"
+#include "../tableSymbols.h"
 
 
 #define NUM_STATES 100

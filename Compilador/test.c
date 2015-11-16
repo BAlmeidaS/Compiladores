@@ -19,6 +19,7 @@ char funcao(FILE *file){
 
 
 
+
 int main() {
 
 	char * filename = "codigo.txt";

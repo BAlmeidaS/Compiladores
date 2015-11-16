@@ -25,6 +25,6 @@ extern Token *token; /* Variavel Global de qual token está sendo lido - Buffer 
 
 void createToken();
 void freeToken();
-
+void printToken();
 
 #endif
