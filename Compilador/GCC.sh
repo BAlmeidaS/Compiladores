@@ -1,0 +1,7 @@
+#!/bin/bash
+# Script to compile and execute a c program in one step.
+
+gcc main.c LEXICO/token.c LEXICO/lexico.c ADT/linked_list.c o main && ./main
+
+
+
