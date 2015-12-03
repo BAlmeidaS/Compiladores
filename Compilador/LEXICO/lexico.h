@@ -8,7 +8,7 @@
 #include "token.h"
 #include "../ADT/linked_list.h"
 #include "../tableSymbols.h"
-
+#include "../FILES/files.h"
 
 #define NUM_STATES 100
 #define NUM_ENUM 90
@@ -27,8 +27,6 @@ typedef enum {
 } character;
 
 int transition_table[NUM_STATES][NUM_ENUM];
-
-FILE *file;
 
 void createTransitionTable();
 void nextToken();

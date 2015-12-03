@@ -14,8 +14,8 @@ char funcao2(FILE *file){
 char funcao(FILE *file){
 	char ret;
 	ret = funcao2(file);
-	return ret;
-}
+	return ret
+;}
 
 
 

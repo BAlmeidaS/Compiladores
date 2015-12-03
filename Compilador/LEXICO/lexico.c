@@ -19,6 +19,7 @@ char *substring(char *from, size_t begin, size_t len) {
 	return substring;
 }
 
+//Escreve efetivamente o token
 void endToken() {
 	switch(token->type) {
 		case T_RESERV_IDENTIF:
@@ -49,7 +50,6 @@ void endToken() {
 			break;
 
 		default:
-			/* Other types do not have token->value */
 			break;
 		}
 }
@@ -83,13 +83,13 @@ character get_type_char(char c) {
 		return letter;
 	else if (c >= '0' && c <= '9')
 		return digit;
-	else if (c == ' ') // talvez incluir "|| c == '\t'""
+	else if (c == '\t' || c == ' ') 
 		return space;
 	else if (c == '=')
 		return equal;
-	else if (c == ';')
+	else if (c == '\n' )
 		return linebreak;
-	else if (	c == '>' || c == '<' || c == '!' || 
+	else if (	c == '>' || c == '<' || c == '!' || c == ';' || 
 				c == '+' || c == '-' || c == '*' || c == '/' || 
 			 	c == '{' || c == '}' || c == '[' || c == ']' || 
 			 	c == '(' || c == ')' || c == ',' )
@@ -125,18 +125,19 @@ void getToken() {
 	List * lexeme;
 	lexeme = empty_list();
 
-
 	//PRIMEIRO - verificar se é o EOF
-	if (nextstate == 9) { 
+	if (nextstate == 8) { 
 		tokenType = T_END_OF_FILE;
 	}
 
+	
 	//Ignorar espacos
 	while(nextstate == 1) { 
 		current = (char)fgetc(file);
 		character = get_type_char(current);
 		nextstate = transition_table[nextstate][character];
 	}
+
 	alloc_add_list(current, lexeme);
 
 	lookahead = get_lookahead(file);
@@ -234,19 +235,6 @@ void nextToken() {
 	getToken();
 	endToken();
 }
-
-void createFile(char *path){
-	file = fopen(path, "r");
-	if (file == NULL) {
-		printf("Nao foi possivel abrir o arquivo %s", path);
-	}
-}
-
-void closeFile(){
-	fclose(file);
-}
-
-
 
 
 
